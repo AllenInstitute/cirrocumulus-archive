@@ -2,7 +2,7 @@ import json
 import csv
 
 # Read in JSON file
-with open("/Users/dana.rocha/Documents/Github/cirro_datasets/example_dataset.json", "r") as jsonfile:
+with open("/Users/dana.rocha/Documents/Github/cirro_datasets/test-may15/cirro_datasets_test_150523.json", "r") as jsonfile:
     data = jsonfile.read()
 
 # Parse file
@@ -35,14 +35,11 @@ for index, row in enumerate(json_obj):
 for index, row in enumerate(json_obj):
     for key, val in row.items():
         if isinstance(val, list) and val not in empty_values:
-            # for i in range(len(val) - 1, 0, -1):
-            #     val = val.pop)_
             val = (",".join(str(item) for item in val))
             row[key] = val
 
-
 # # Write out CSV file
-with open("formatted_out_9.csv", "w", encoding="UTF8", newline="") as fileout:
+with open("test_outfile_1.csv", "w", encoding="UTF8", newline="") as fileout:
     writer = csv.DictWriter(fileout, fieldnames=headers)
     writer.writeheader()
     writer.writerows(json_obj)
