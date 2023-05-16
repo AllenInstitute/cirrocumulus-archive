@@ -1,0 +1,46 @@
+[
+    {
+        "_id": {
+            "$oid": "618d86728fc3b606ac4f5da4"
+        },
+        "name": "Vizgen",
+        "title": "mouse_mfish_11092021",
+        "description": "",
+        "url": "/allen/programs/celltypes/workgroups/rnaseqanalysis/shiny/Cirro/mouse_mfish_11092021/correct_mapping_z.cpq",
+        "species": "Mus musculus",
+        "last_updated": {
+            "$date": "2021-11-23T18:46:16.513Z"
+        },
+        "owners": [
+            ""
+        ],
+        "readers": [
+            ""
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "61e9ab94099b23c59f392c86"
+        },
+        "name": "ForeBrain_STR-MSN_integrated_nbhd_76",
+        "title": "20220120_mouse_ForeBrain_STR-MSN_SS_10Xv2_10Xv3_nbhd_76",
+        "description": "",
+        "url": "/allen/programs/celltypes/workgroups/rnaseqanalysis/shiny/Cirro/20220120_mouse_ForeBrain_STR-MSN_integrated_nbhd_76/processed.cpq.zarr",
+        "species": "Mus musculus",
+        "last_updated": {
+            "$date": "2022-09-28T20:47:54.093Z"
+        },
+        "owners": [
+            ""
+        ],
+        "readers": [
+            ""
+        ],
+        "citations": "",
+        "contacts": [],
+        "experimentType": "",
+        "library": [],
+        "overallDesign": "",
+        "taxonomy": "AIT09.0_mouse"
+    }
+]
