@@ -22,15 +22,17 @@ headers = []
 
 for index, row in enumerate(json_obj):
     for key, val in row.items():
-        headers.append(key)
+        if key not in headers:
+            headers.append(key)
         if val in empty_values:
             row[key] = "NA"
         if key in "_id" or key == "last_updated":
             for nested_key, nested_val in val.items():
                 row[key] = nested_val
 
-with open("formatted_out.csv", "w", encoding="UTF8", newline="") as fileout:
+with open("formatted_out_2.csv", "w", encoding="UTF8", newline="") as fileout:
     writer = csv.DictWriter(fileout, fieldnames=headers)
+    # writer.writerow(headers)
     writer.writerows(json_obj)
 
 # class to clean dataset
