@@ -31,11 +31,20 @@ for index, row in enumerate(json_obj):
         if header not in row.keys():
             row[header] = "NA"
 
-# Write out CSV file
-with open("formatted_out_7.csv", "w", encoding="UTF8", newline="") as fileout:
+# Unlist values of list type
+for index, row in enumerate(json_obj):
+    for key, val in row.items():
+        if isinstance(val, list) and val not in empty_values:
+            # for i in range(len(val) - 1, 0, -1):
+            #     val = val.pop)_
+            val = (",".join(str(item) for item in val))
+            row[key] = val
+
+
+# # Write out CSV file
+with open("formatted_out_9.csv", "w", encoding="UTF8", newline="") as fileout:
     writer = csv.DictWriter(fileout, fieldnames=headers)
     writer.writeheader()
     writer.writerows(json_obj)
-
 
 # Call, user arguments (argparse)

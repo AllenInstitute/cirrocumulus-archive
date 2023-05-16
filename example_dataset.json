@@ -157,5 +157,34 @@
         "owners": [
             ""
         ]
+    },
+    {
+        "_id": {
+            "$oid": "6437a3fc030d2953fec00c93"
+        },
+        "url": "/allen/programs/celltypes/workgroups/rnaseqanalysis/shiny/Cirro/20230410_mouse_BG_new_mappingfilter/processed.cpq",
+        "contacts": [],
+        "name": "Basal Ganglia",
+        "title": "20230410 Mouse basal ganglia 10xmultiome mapping to WB",
+        "taxonomy": "",
+        "species": [
+            "Mus musculus"
+        ],
+        "library": [
+            "10x multiome"
+        ],
+        "experimentType": "",
+        "description": "",
+        "overallDesign": "",
+        "citations": "",
+        "readers": [
+            ""
+        ],
+        "last_updated": {
+            "$date": "2023-04-13T06:41:00.293Z"
+        },
+        "owners": [
+            ""
+        ]
     }
 ]
