@@ -1,16 +1,14 @@
 import json
 import csv
 
-# class to read in json
-
-# Read file
-with open("example_dataset.json", "r") as jsonfile:
+# Read in JSON file
+with open("/Users/dana.rocha/Documents/Github/cirro_datasets/example_dataset.json", "r") as jsonfile:
     data = jsonfile.read()
 
 # Parse file
 json_obj = json.loads(data)
 
-empty_values = ["", [''], []]
+empty_values = ["", [''], [], "[]"]
 unpack_keys = ["_id", "last_updated"]
 
 headers = []
@@ -27,8 +25,14 @@ for index, row in enumerate(json_obj):
             for nested_key, nested_val in val.items():
                 row[key] = nested_val
 
+# Fill in missing columns with NA
+for index, row in enumerate(json_obj):
+    for header in headers:
+        if header not in row.keys():
+            row[header] = "NA"
+
 # Write out CSV file
-with open("formatted_out_3.csv", "w", encoding="UTF8", newline="") as fileout:
+with open("formatted_out_7.csv", "w", encoding="UTF8", newline="") as fileout:
     writer = csv.DictWriter(fileout, fieldnames=headers)
     writer.writeheader()
     writer.writerows(json_obj)
