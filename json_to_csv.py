@@ -8,26 +8,31 @@ import csv
 # df = pd.read_json('/Users/dana.rocha/Documents/Github/cirro_datasets/test-may15/cirro_datasets_test_150523.json')
 # df.to_csv('/Users/dana.rocha/Documents/Github/cirro_datasets/test-may15/cirro_datasets_test_150523_formatted_out.csv', index = None)
 
-f = open('example_dataset.json', 'r')
+# Read file
+with open("example_dataset.json", "r") as jsonfile:
+    data = jsonfile.read()
 
-data = json.loads(f.read())
+# Parse file
+json_obj = json.loads(data)
 
 empty_values = ["", [''], []]
 unpack_keys = ["_id", "last_updated"]
 
-for index, row in enumerate(data):
+headers = []
+
+for index, row in enumerate(json_obj):
     for key, val in row.items():
+        headers.append(key)
         if val in empty_values:
             row[key] = "NA"
         if key in "_id" or key == "last_updated":
             for nested_key, nested_val in val.items():
                 row[key] = nested_val
-f.close()
 
-fileout = open("/Users/dana.rocha/Documents/Github/cirro_datasets/out.csv", "w")
-writer = csv.writer(fileout)
-writer.writerow(data)
-fileout.close()
+with open("formatted_out.csv", "w", encoding="UTF8", newline="") as fileout:
+    writer = csv.DictWriter(fileout, fieldnames=headers)
+    writer.writerows(json_obj)
+
 # class to clean dataset
 # loop through columns, add NA if value is empty
 
