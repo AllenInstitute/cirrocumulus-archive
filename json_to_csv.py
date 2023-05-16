@@ -30,9 +30,9 @@ for index, row in enumerate(json_obj):
             for nested_key, nested_val in val.items():
                 row[key] = nested_val
 
-with open("formatted_out_2.csv", "w", encoding="UTF8", newline="") as fileout:
+with open("formatted_out_3.csv", "w", encoding="UTF8", newline="") as fileout:
     writer = csv.DictWriter(fileout, fieldnames=headers)
-    # writer.writerow(headers)
+    writer.writeheader()
     writer.writerows(json_obj)
 
 # class to clean dataset
