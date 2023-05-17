@@ -210,5 +210,28 @@
         "owners": [
             ""
         ]
+    },{
+        "_id": {
+            "$oid": "6244b3530ce845115e13a9c3"
+        },
+        "url": "/allen/programs/celltypes/workgroups/rnaseqanalysis/shiny/Cirro/20220329_merfish_macaque/202110291527_Macaquecoverslip5_VMSC00801.cpq",
+        "contacts": "[]",
+        "name": "Macaque MERFISH",
+        "title": "202110291527_Macaquecoverslip5_VMSC00801",
+        "species": "[\"Macaca fascicularis\"]",
+        "library": "[]",
+        "experimentType": "",
+        "description": "",
+        "overallDesign": "",
+        "citations": "",
+        "readers": [
+            ""
+        ],
+        "last_updated": {
+            "$date": "2022-03-30T19:45:23.355Z"
+        },
+        "owners": [
+            ""
+        ]
     }
 ]
