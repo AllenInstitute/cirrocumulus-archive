@@ -1,5 +1,5 @@
-import json
 import csv
+import json
 import re
 import sys
 
@@ -38,15 +38,15 @@ def fill_missing_row_values(file_to_clean):
 
     return file_to_clean
 
-# def remove_nonalpha_chars(in_file):
-#     for index, data_row in enumerate(in_file):
-#         for key, val in data_row.items():
-#             if isinstance(val, str):
-#                 # Removes non-alphanumeric characters besides whitespace
-#                 new_val = re.sub(r'[^A-Za-z0-9 ]+', '', val)
-#                 data_row[key] = new_val
+def remove_nonalpha_chars_species_col(in_file):
+    for index, data_row in enumerate(in_file):
+        for key, val in data_row.items():
+            if isinstance(val, str) and key == "species":
+                # Removes non-alphanumeric characters besides whitespace
+                new_val = re.sub(r'[^A-Za-z0-9 ]+', '', val)
+                data_row[key] = new_val
 
-#     return in_file
+    return in_file
 
 def flatten_nested_values(json_file_to_parse):
     unpack_keys = ["_id", "last_updated"]
@@ -66,7 +66,7 @@ def flatten_nested_values(json_file_to_parse):
 
 def write_to_csv(file_to_write):
     # Write out CSV file
-    with open("testing_out.csv", "w", encoding="UTF8", newline="") as fileout:
+    with open("testing_out_all_2.csv", "w", encoding="UTF8", newline="") as fileout:
         writer = csv.DictWriter(fileout, fieldnames=HEADERS)
         writer.writeheader()
         writer.writerows(file_to_write)
@@ -75,16 +75,12 @@ def write_to_csv(file_to_write):
 
 
 def main():
-    loaded_file = load_json("example_dataset.json")
+    loaded_file = load_json("mongo-export/cirro_datasets_test_150523.json")
     parsed_json = fill_empty_values(loaded_file)
     flattened_json = flatten_nested_values(parsed_json)
     filled_missing_rows = fill_missing_row_values(flattened_json)
-    write_to_csv(filled_missing_rows)
-    # non_alpha_removed = remove_nonalpha_chars(filled_missing_rows)
-    # print(non_alpha_removed)
-    # print(filled_missing_rows)
-    # print("made it here")
-    # print(HEADERS)
+    removed_non_alpha = remove_nonalpha_chars_species_col(filled_missing_rows)
+    write_to_csv(removed_non_alpha)
 
 
 if __name__ == "__main__":
