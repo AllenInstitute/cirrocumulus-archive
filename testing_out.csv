@@ -1,0 +1,4 @@
+_id,name,title,description,url,species,last_updated,owners,readers,contacts,taxonomy,library,experimentType,overallDesign,citations
+618d86728fc3b606ac4f5da4,Vizgen,mouse_mfish_11092021,NA,/allen/programs/celltypes/workgroups/rnaseqanalysis/shiny/Cirro/mouse_mfish_11092021/correct_mapping_z.cpq,Mus musculus,2021-11-23T18:46:16.513Z,NA,NA,NA,NA,NA,NA,NA,NA
+6441bf4c92e3369d673ed45d,Costa_Zirong_PPN_Neuronal_only,Costa_Zirong_PPN_Neuronal_only,NA,/allen/programs/celltypes/workgroups/rnaseqanalysis/ericthomas/zirong/ppn_subset/cirro_neuronal/,NA,2023-04-20T22:40:12.906Z,NA,NA,NA,NA,"10x multiome,Smart-seq",NA,NA,NA
+6244b3530ce845115e13a9c3,Macaque MERFISH,202110291527_Macaquecoverslip5_VMSC00801,NA,/allen/programs/celltypes/workgroups/rnaseqanalysis/shiny/Cirro/20220329_merfish_macaque/202110291527_Macaquecoverslip5_VMSC00801.cpq,"[""Macaca fascicularis""]",2022-03-30T19:45:23.355Z,NA,NA,NA,NA,NA,NA,NA,NA
