@@ -31,7 +31,6 @@ class CirroJsonToCSV:
         assert os.path.exists(self.json_path), f"JSON file at '{self.json_path}' does not exist."
         if os.path.exists(self.json_path):
             with open(self.json_path, "r") as jsonfile:
-                print("load_json!")
                 self.json_to_parse = json.load(jsonfile)
     
     def fill_empty_values(self):
@@ -89,27 +88,6 @@ class CirroJsonToCSV:
             writer = csv.DictWriter(fileout, fieldnames=self.headers)
             writer.writeheader()
             writer.writerows(self.json_to_parse)
-
-
-
-
-
-# def write_to_csv(file_to_write):
-#     with open("cirro_datasets.csv", "w", encoding="UTF8", newline="") as fileout:
-#         writer = csv.DictWriter(fileout, fieldnames=HEADERS)
-#         writer.writeheader()
-#         writer.writerows(file_to_write)
-
-
-
-
-# def main():
-#     loaded_file = load_json("mongo-export/cirro_datasets_test_150523.json")
-#     parsed_json = fill_empty_values(loaded_file)
-#     flattened_json = flatten_nested_values(parsed_json)
-#     filled_missing_rows = fill_missing_row_values(flattened_json)
-#     removed_non_alpha = remove_nonalpha_chars_species_col(filled_missing_rows)
-#     write_to_csv(removed_non_alpha)
 
 def main():
     initialize = CirroJsonToCSV("example_dataset.json")
