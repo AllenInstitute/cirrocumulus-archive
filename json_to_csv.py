@@ -1,36 +1,63 @@
 import csv
 import json
+import os
 import re
-import sys
+# from pathlib import Path
 
 # TODO: convert to classes, add main to call classes/methods, user arguments (argparse)
 EMPTY_VALUES = ["", [''], [], "[]"]
 HEADERS = []
 
-def load_json(path):
-    with open(path, "r") as jsonfile:
-        # print("yes")
-        return jsonfile.read()
+class CirroJsonToCSV:
+    """ Class to clean JSON export from MongoDB and write to CSV file"""
 
-def fill_empty_values(json_to_parse):
-    json_obj = json.loads(json_to_parse)
+    @staticmethod
+    def load_json(path: str) -> json:
+        """
+        Loads JSON from a path
+        Parameters
+        ----------
+        path : str
 
-    # Add "NA" where there are empty values
-    for index, row in enumerate(json_obj):
-        for key, val in row.items():
+        Returns
+        -------
+        json
+        """
+        assert os.path.exists(path), f"JSON file at '{path}' does not exist."
+        if os.path.exists(path):
+            with open(path, "r") as jsonfile:
+                print("load_json!")
+                return json.loads(jsonfile)
+                # return jsonfile.read()
+    
+    def __init__(self) -> None:
+        self.json_to_parse = self.load_json()
 
-            if key not in HEADERS:
-                HEADERS.append(key)
+    def fill_empty_values(self):
+        # json_obj = json.loads(json_to_parse)
 
-            # Loop through rows, add NA if value is empty or an empty list
-            if val in EMPTY_VALUES:
-                row[key] = "NA"
+        # Add "NA" where there are empty values
+        for index, row in enumerate(self.json_to_parse):
+            for key, val in row.items():
 
-    return json_obj
+                if key not in HEADERS:
+                    HEADERS.append(key)
+
+                # Loop through rows, add NA if value is empty or an empty list
+                if val in EMPTY_VALUES:
+                    row[key] = "NA"
+        return self.json_to_parse
+
+    def write_to_csv(self):
+        with open("cirro_datasets.csv", "w", encoding="UTF8", newline="") as fileout:
+            writer = csv.DictWriter(fileout, fieldnames=HEADERS)
+            writer.writeheader()
+            writer.writerows(self.json_to_parse)
+
 
 def fill_missing_row_values(file_to_clean):
     # Fill in missing row values with NA
-    # Useful for when object has incorrect # of keys (missing a column)
+    # Useful for when object has incorrect number of keys (when a row in the dataset is missing a column)
     for index, row in enumerate(file_to_clean):
         for header in HEADERS:
             if header not in row.keys():
@@ -65,8 +92,7 @@ def flatten_nested_values(json_file_to_parse):
     return json_file_to_parse
 
 def write_to_csv(file_to_write):
-    # Write out CSV file
-    with open("testing_out_all_2.csv", "w", encoding="UTF8", newline="") as fileout:
+    with open("cirro_datasets.csv", "w", encoding="UTF8", newline="") as fileout:
         writer = csv.DictWriter(fileout, fieldnames=HEADERS)
         writer.writeheader()
         writer.writerows(file_to_write)
@@ -74,14 +100,16 @@ def write_to_csv(file_to_write):
 
 
 
-def main():
-    loaded_file = load_json("mongo-export/cirro_datasets_test_150523.json")
-    parsed_json = fill_empty_values(loaded_file)
-    flattened_json = flatten_nested_values(parsed_json)
-    filled_missing_rows = fill_missing_row_values(flattened_json)
-    removed_non_alpha = remove_nonalpha_chars_species_col(filled_missing_rows)
-    write_to_csv(removed_non_alpha)
+# def main():
+#     loaded_file = load_json("mongo-export/cirro_datasets_test_150523.json")
+#     parsed_json = fill_empty_values(loaded_file)
+#     flattened_json = flatten_nested_values(parsed_json)
+#     filled_missing_rows = fill_missing_row_values(flattened_json)
+#     removed_non_alpha = remove_nonalpha_chars_species_col(filled_missing_rows)
+#     write_to_csv(removed_non_alpha)
 
+def main():
+    convert_json = CirroJsonToCSV.load_json("mongo-export/cirro_datasets_test_150523.json")
 
 if __name__ == "__main__":
     main()
