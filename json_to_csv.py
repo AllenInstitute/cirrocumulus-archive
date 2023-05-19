@@ -6,13 +6,8 @@ import re
 import sys
 from pathlib import Path
 
-# TODO: user arguments (argparse)
-
 class CirroJsonToCSV:
     """ Class to clean the JSON export from MongoDB and write to CSV file"""
-
-    # DEFAULT_FILE_PATH = os.getcwd()
-    # DEFAULT_JSON_FILENAME = "example_dataset.json"
 
     def __init__(self, json_path) -> None:
         self.json_path = json_path[1]
@@ -25,7 +20,6 @@ class CirroJsonToCSV:
     def _parse_arguments(self, args: list) -> argparse.Namespace:
         
         error_message = "Input directory must be specified."
-        # help_message = "Output directory, defaults to current working directory"
 
         parser = argparse.ArgumentParser()
 
@@ -35,14 +29,6 @@ class CirroJsonToCSV:
             required=True,
             help=error_message
         )
-
-        # parser.add_argument(
-        #     "-o",
-        #     "--output",
-        #     required=False,
-        #     default=self.DEFAULT_FILE_PATH,
-        #     help=help_message,
-        # )
 
         args = parser.parse_args()
         return args
@@ -61,29 +47,13 @@ class CirroJsonToCSV:
         DEFAULT_JSON_FILENAME = "example_dataset.json"
         path_to_check = Path(self.json_path) / DEFAULT_JSON_FILENAME
 
-        # assert os.path.exists(self.json_path), f"The file path '{self.json_path}' does not exist."
-        # print(type(self.json_path)) ## string type
         assert os.path.isfile(path_to_check), f"The JSON file '{DEFAULT_JSON_FILENAME}' does not exist in this file path '{self.json_path}'."
-        # print(path_to_check)
 
         if os.path.isfile(path_to_check):
-            # print("YES")
             self.output_filepath = Path(self.json_path)
 
             with path_to_check.open("r") as jsonfile:
-                # print("self.json_path:", self.json_path)
-                # print(type(self.json_path))
-                # print("path_to_check:", path_to_check.parent)
-                # print(type(path_to_check.parent))
-                # content = jsonfile.read()
-                # self.json_to_parse = json.load(content)
                 self.json_to_parse = json.loads(jsonfile.read())
-        # print(content)
-        # print(type(content))
-        # print(self.json_to_parse)
-        # print(type(self.json_to_parse))
-        # print("output_filepath", self.output_filepath)
-        # print(type(self.output_filepath))
 
     def fill_empty_values(self):
         # Add "NA" where there are empty values
@@ -146,19 +116,8 @@ class CirroJsonToCSV:
             # print(type(fileout))
             writer.writerows(self.json_to_parse)
 
-# def main():
-#     initialize = CirroJsonToCSV("example_dataset.json")
-#     initialize.load_json()
-#     initialize.fill_empty_values()
-#     initialize.fill_missing_row_values()
-#     initialize.remove_nonalpha_chars_species_col()
-#     initialize.flatten_nested_values()
-#     initialize.write_to_csv()
-
 if __name__ == "__main__":
-    # main()
     sys_args = sys.argv[1:]
-    # print(type(sys_args))
     initialize = CirroJsonToCSV(sys_args)
     initialize.load_json()
 
