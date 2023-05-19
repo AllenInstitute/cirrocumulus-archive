@@ -61,7 +61,7 @@ class CirroJsonToCSV:
         DEFAULT_JSON_FILENAME = "example_dataset.json"
         path_to_check = Path(self.json_path) / DEFAULT_JSON_FILENAME
 
-        assert os.path.exists(self.json_path), f"This file path '{self.json_path}' does not exist."
+        # assert os.path.exists(self.json_path), f"The file path '{self.json_path}' does not exist."
         # print(type(self.json_path)) ## string type
         assert os.path.isfile(path_to_check), f"The JSON file '{DEFAULT_JSON_FILENAME}' does not exist in this file path '{self.json_path}'."
         # print(path_to_check)
@@ -137,17 +137,14 @@ class CirroJsonToCSV:
 
     def write_to_csv(self):
         # print(type(self.output_filepath))
-        csv_file_path= (self.output_filepath / "cirro_datasets_test_2").with_suffix(".csv")
-
-        # with csv_file_obj.open("w", encoding="utf-8") as fileout:
-        #     csv.writer(fileout)
+        csv_file_path= (self.output_filepath / "cirro_datasets_test").with_suffix(".csv")
 
         with csv_file_path.open("w") as fileout:
             writer = csv.DictWriter(fileout, fieldnames=self.headers)
             writer.writeheader()
             # print(writer)
             # print(type(fileout))
-            writer.writerows(fileout)
+            writer.writerows(self.json_to_parse)
 
 # def main():
 #     initialize = CirroJsonToCSV("example_dataset.json")
