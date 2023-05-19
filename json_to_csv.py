@@ -3,10 +3,7 @@ import json
 import os
 import re
 
-# TODO: convert to classes, add main to call classes/methods, user arguments (argparse)
-
-# EMPTY_VALUES = ["", [''], [], "[]"]
-# HEADERS = []
+# TODO: add main to call classes/methods, user arguments (argparse)
 
 class CirroJsonToCSV:
     """ Class to clean the JSON export from MongoDB and write to CSV file"""
@@ -35,7 +32,7 @@ class CirroJsonToCSV:
     
     def fill_empty_values(self):
         # Add "NA" where there are empty values
-        for index, row in enumerate(self.json_to_parse):
+        for row in self.json_to_parse:
             for key, val in row.items():
 
                 if key not in self.headers:
@@ -50,7 +47,7 @@ class CirroJsonToCSV:
     def fill_missing_row_values(self):
         # Fill in missing row values with NA
         # For when JSON object (dictionary) has incorrect number of keys (when a row in the dataset is missing a column)
-        for index, row in enumerate(self.json_to_parse):
+        for row in self.json_to_parse:
             for header in self.headers:
                 if header not in row.keys():
                     row[header] = "NA"
@@ -58,7 +55,7 @@ class CirroJsonToCSV:
         return self.json_to_parse
     
     def remove_nonalpha_chars_species_col(self):
-        for index, data_row in enumerate(self.json_to_parse):
+        for data_row in self.json_to_parse:
             for key, val in data_row.items():
                 if isinstance(val, str) and key == "species":
                     # Removes non-alphanumeric characters besides whitespace
@@ -70,7 +67,7 @@ class CirroJsonToCSV:
     def flatten_nested_values(self):
         unpack_keys = ["_id", "last_updated"]
 
-        for index, data_row in enumerate(self.json_to_parse):
+        for data_row in self.json_to_parse:
             for key, val in data_row.items():
                 # Unnest "oid" and "date" values from dictionary
                 if key in unpack_keys:
