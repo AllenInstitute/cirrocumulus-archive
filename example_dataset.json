@@ -45,56 +45,6 @@
     },
     {
         "_id": {
-            "$oid": "61e9abd8d6e8cddcb83e3b6f"
-        },
-        "name": "ForeBrain_sAMY-PAL_integrated_nbhd_324",
-        "title": "20220120_mouse_ForeBrain_sAMY-PAL_SS_10Xv2_10Xv3_nbhd_324",
-        "description": "",
-        "url": "/allen/programs/celltypes/workgroups/rnaseqanalysis/shiny/Cirro/20220120_mouse_ForeBrain_sAMY-PAL_integrated_nbhd_324/processed.cpq.zarr",
-        "species": "Mus musculus",
-        "last_updated": {
-            "$date": "2022-09-28T20:48:12.283Z"
-        },
-        "owners": [
-            ""
-        ],
-        "readers": [
-            ""
-        ],
-        "citations": "",
-        "contacts": [],
-        "experimentType": "",
-        "library": [],
-        "overallDesign": "",
-        "taxonomy": "AIT09.0_mouse"
-    },
-    {
-        "_id": {
-            "$oid": "61e9ac3f11b37a9998e0d698"
-        },
-        "name": "ForeBrain_OLF-CTXsp-sAMY_integrated_nbhd_133",
-        "title": "20220120_mouse_ForeBrain_OLF-CTXsp-sAMY_SS_10Xv2_10Xv3_nbhd_133",
-        "description": "",
-        "url": "/allen/programs/celltypes/workgroups/rnaseqanalysis/shiny/Cirro/20220120_mouse_ForeBrain_OLF-CTXsp-sAMY_integrated_nbhd_133/processed.cpq.zarr",
-        "species": "Mus musculus",
-        "last_updated": {
-            "$date": "2022-09-28T20:48:25.815Z"
-        },
-        "owners": [
-            ""
-        ],
-        "readers": [
-            ""
-        ],
-        "citations": "",
-        "contacts": [],
-        "experimentType": "",
-        "library": [],
-        "overallDesign": "",
-        "taxonomy": "AIT09.0_mouse"
-    },
-    {
-        "_id": {
             "$oid": "62140ae1b1301e9ecb0e81fb"
         },
         "name": "Spinal Cord RNA/ATAC",
@@ -112,25 +62,7 @@
             ""
         ]
     },
-    {
-        "_id": {
-            "$oid": "6219b428b81785f11de06747"
-        },
-        "name": "mouse developmental VIS",
-        "title": "20220225 mouse VIS developmental data",
-        "description": "",
-        "url": "/allen/programs/celltypes/workgroups/rnaseqanalysis/yuangao/dev_mouse_VIS/DatClean/2022-02-25.processed.cpq",
-        "species": "Mus musculus",
-        "last_updated": {
-            "$date": "2022-02-26T05:01:28.402Z"
-        },
-        "owners": [
-            ""
-        ],
-        "readers": [
-            ""
-        ]
-    },{
+{
         "_id": {
             "$oid": "6441bf4c92e3369d673ed45d"
         },
