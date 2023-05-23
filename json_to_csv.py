@@ -59,7 +59,6 @@ class CirroJsonToCSV:
 
             with path_to_check.open("r") as jsonfile:
                 self.json_to_parse = json.loads(jsonfile.read())
-        print(type(self.json_to_parse))
 
     def fill_empty_values(self):
         """
